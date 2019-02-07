@@ -40,5 +40,5 @@ Navigate to the folder where the .sln file is (Reminders) and type:
 If you want to have a look at which other projects are referenced by a particular project you can either open the .csproj file and have a look at the ProjectReference entries or if you want to do it from the command line: dotnet list PathToCsProj reference.
 
 You can also navigate to the folder where a particular project is and simply do 
-### dotnet add reference pathToOtherProject.csprj
+# dotnet add reference pathToOtherProject.csprj
 
