@@ -135,7 +135,7 @@ In full Visual Studio you have several templates available when adding new files
 
 In VS Code the only out of the box option is to create a new file and use the VS Code snippets (e.g. typing class and then TAB).
 
-Fortunately there’s a VS Code extension named “[C# Extensions]” (https://marketplace.visualstudio.com/items?itemName=jchannon.csharpextensions) which adds two options to the context menu on VS Code’s explorer view: “New C# Class” and “New C# Interface”.
+Fortunately there’s a VS Code extension named “[C# Extensions](https://marketplace.visualstudio.com/items?itemName=jchannon.csharpextensions)”  which adds two options to the context menu on VS Code’s explorer view: “New C# Class” and “New C# Interface”.
 
 This extension also adds the ability to generate a class’ constructor from properties, generate properties from the constructor and add read-only properties and initialize them (there are demos of this in the extension’s page).
 
@@ -157,8 +157,6 @@ Name it [Reminder.cs] and create the three properties. In the end it should look
   }
 
 Now put the cursor on the opening “{” after class Reminders and click the light bulb and select “Initialize ctor from properties”:
-
-Initialize constructor form properties
 
 You should end up with this:
 
@@ -184,3 +182,17 @@ namespace Reminders.Common
 }
 
 Although the constructor isn’t really necessary (and it won’t play well with Entity Framework if you are planning to use it) , it’s just an example of some nice features you get from the extension. Also, when defining properties you can use the same snippets that are available in full Visual Studio (i.e. type prop and press TAB).
+
+
+
+## Razor views
+
+Razor pages (.cshtml) is definitely an area where VS Code is lacking. There’s no intellisense or even auto-indent.
+
+There’s an extension in the marketplace named [ASP.NET Helper](https://marketplace.visualstudio.com/items?itemName=schneiderpat.aspnet-helper) which will get you intellisense, however you have to import the namespaces for your models in _ViewImports.chtml (the extension’s requirements are at the bottom of the extensions page). Also in its current version it only seems to work if the model you use is in the same project as the view.
+
+This extension can be useful in some situations but it’s very limited.
+Install ASP.NET Helper extension.
+
+
+
