@@ -228,3 +228,83 @@ Create a new ItemGroup (or find the ItemGroup that already has DotNetCliToolRefe
 
 You should now be able to run dotnet ef in the Reminders.Web project.
 
+
+
+## Running tests
+
+
+One thing your development workflow probably involves is writing unit tests.
+
+VS Code comes with out of the box support for running unit tests. For example if you open UnitTest1.cs you’ll notice that over the test method there are two links, run test and debug test:
+
+This will allow you to run a unit test at a time, there’s no way inside VS Code of running all the tests in a project. You can however navigate to a test project in a terminal and type:
+
+### $ dotnet test
+
+This is the output you should get if you do it for Reminders.Tests:
+
+Starting test execution, please wait...
+[xUnit.net 00:00:00.4275346]   Discovering: Reminders.Tests
+[xUnit.net 00:00:00.5044862]   Discovered:  Reminders.Tests
+[xUnit.net 00:00:00.5549595]   Starting:    Reminders.Tests
+[xUnit.net 00:00:00.6980509]   Finished:    Reminders.Tests
+
+Total tests: 1. Passed: 1. Failed: 0. Skipped: 0.
+Test Run Successful.
+
+Alternatively you can specify the path to the test project you want to run, for example dotnet test Reminders.Tests/Reminders.Tests.csproj.
+
+It is also possible to specify which tests to run in the command line, for example say you only want to run the tests in class MyClassTests. Here’s how you can do that:
+
+$ dotnet test --filter MyClassTests
+
+The filter functionality has several more options. The example above is short for dotnet test --filter FullyQualifiedName~MyClassTests (~ means contains).
+
+There are other handy options, for example in xUnit it’s possible to specify “traits” for tests, for example:
+
+[Trait("TraitName", "TraitValue")]
+public class UnitTest1
+{
+    [Fact]        
+    public void Test1()
+    {
+        //...
+    }
+}
+
+You can then run:
+
+$ dotnet test --filter TraitName=TraitValue
+
+And only tests that have that trait will be run. You can specify Trait on a method or class level.
+
+Although trait is specific to xUnit, there are equivalent constructs on other testing frameworks. For example, mstest has TestCategory.
+
+If you prefer to do everything inside VS Code you can create tasks for running tests. First go to tasks.json and make a copy of the build task, change its label to test (or whatever you want to call it) and update the args so that instead of build, test is executed with the path to the test project, for example for Reminders.Tests:
+
+    {
+        "label": "test",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+            "test",
+            "${workspaceFolder}/Reminders.Tests/Reminders.Tests.csproj"
+        ],
+        "problemMatcher": "$msCompile"
+    } 
+
+You can run tasks in VS Code by using the command palette (Ctrl + Shift + P) and typing “Run Task” and then selecting the task you want to run. You can even set a task as the “test task” and assign a keyboard shortcut for it (the same way you can do Ctrl + Shift + B to trigger a task configured as the “build task”).
+
+To set a task as the “test task” open the command palette and select “Tasks: Configure Default Test Task”, choose the test task and you’re done.
+
+
+## One last tip
+
+Sometimes VS Code (actually Omnisharp) seems to go haywire, for example intellisense stops working. When that happens you can either reload VS Code by using the command palette and selecting “Reload Window” or the less aggressive option is to restart Omnisharp (the command name is: Omnisharp: Restart Omnisharp).
+
+Hope this guide was helpful, let me know in the comments.
+
+Filed Under: .Net, .Net Core, ASP.NET Core
+Primary Sidebar
+Rui Figueiredo
+
