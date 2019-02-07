@@ -192,7 +192,23 @@ Razor pages (.cshtml) is definitely an area where VS Code is lacking. There’s 
 There’s an extension in the marketplace named [ASP.NET Helper](https://marketplace.visualstudio.com/items?itemName=schneiderpat.aspnet-helper) which will get you intellisense, however you have to import the namespaces for your models in _ViewImports.chtml (the extension’s requirements are at the bottom of the extensions page). Also in its current version it only seems to work if the model you use is in the same project as the view.
 
 This extension can be useful in some situations but it’s very limited.
-Install ASP.NET Helper extension.
+** Install ASP.NET Helper extension.**
+
+
+
+## Nuget packages
+
+In the full version of Visual Studio there’s an option to Manage NuGet packages. You get an UI where you can search, update and install NuGet packages. In VS Code there’s no support for NuGet out of the box.
+
+Thankfully there’s an extension you can install that will enable searching, adding and removing NuGet packages from VS Code. The extension is named NuGet Package Manager.
+
+Alternatively you can use the command line. To add a package to a project the syntax is: dotnet add PathToCsproj package PackageName. Or, if you navigate to the project you want to add the NuGet package to, you can omit the path to the csproj file: dotnet add package PackageName.
+
+Imagine you wanted to add the Microsoft.EntityFrameworkCore package to Reminders.Common class library. After navigating to it:
+
+### $ dotnet add package Microsoft.EntityFrameworkCore
+
+
 
 
 
