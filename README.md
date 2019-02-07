@@ -210,5 +210,21 @@ Imagine you wanted to add the Microsoft.EntityFrameworkCore package to Reminders
 
 
 
+## Adding tools
 
+Let’s imagine we want to use the Entity Framework tooling in our web project. Navigate to [Reminders.Web] and open the csproj file.
+
+Make note of the version of Microsoft.AspNetCore.All package. For example, let’s imagine it’s “2.0.0”.
+
+Create a new ItemGroup (or find the ItemGroup that already has DotNetCliToolReferences) and inside add the DotNetCliToolReference for the Microsoft.EntityFrameworkCore.Tools.DotNet with Version="2.0.0".
+
+  <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />            
+  </ItemGroup>
+  <ItemGroup>
+      <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" /> <!-- ADD THIS -->
+      <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />        
+  </ItemGroup>
+
+You should now be able to run dotnet ef in the Reminders.Web project.
 
